@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="navbar">
+            <h2>Admin Paneli</h2>
+            <ul>
+                <li><a href="#" onclick="showStudents()">Öğrenciler</a></li>
+                <li><a href="#" onclick="showApplications()">Başvurular</a></li>
+                <li><a href="#" onclick="showNurseries()">Kreşler</a></li>
+                <li><a href="#" onclick="showBranches()">Şubeler</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div id="welcome-message">
+                <h1>Hoşgeldiniz!</h1>
+                <p>Bu admin paneline hoş geldiniz. Sol taraftaki menüyü kullanarak öğrenciler, başvurular, kreşler ve şubeler hakkında bilgi edinebilirsiniz.</p>
+            </div>
+
+            <!-- Öğrenci Bilgileri -->
+            <div id="students" class="hidden">
+                <h1>Tüm Öğrenciler</h1>
+                <div class="form-container">
+                    <table class="student-table">
+                        <thead>
+                            <tr>
+                                <th>Öğrenci ID</th>
+                                <th>İsim Soyisim</th>
+                                <th>TC No</th>
+                                <th>Doğum Tarihi</th>
+                                <th>Adres</th>
+                                <th>Okul</th>
+                                <th>Şube</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" id="student-id" placeholder="Öğrenci ID..."></td>
+                                <td><input type="text" id="full-name" placeholder="İsim Soyisim..."></td>
+                                <td><input type="text" id="tc-no" placeholder="TC NO..." maxlength="11"></td>
+                                <td>
+                                    <select id="birth-date-day">
+                                        <option value="">Gün</option>
+                                        <!-- Gün seçenekleri JavaScript ile eklenecek -->
+                                    </select>
+                                    <select id="birth-date-month">
+                                        <option value="">Ay</option>
+                                        <!-- Ay seçenekleri JavaScript ile eklenecek -->
+                                    </select>
+                                    <select id="birth-date-year">
+                                        <option value="">Yıl</option>
+                                        <!-- Yıl seçenekleri JavaScript ile eklenecek -->
+                                    </select>
+                                </td>
+                                <td><input type="text" id="address" placeholder="Adres..."></td>
+                                <td>
+                                    <select id="school">
+                                        <option value="Okul 1">Okul 1</option>
+                                        <option value="Okul 2">Okul 2</option>
+                                        <option value="Okul 3">Okul 3</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="branch">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </td>
+                                <td><button id="add-student" onclick="addStudent()">Öğrenci Ekle</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Mevcut Öğrenci Listesi -->
+                <h2>Mevcut Öğrenciler</h2>
+                <table class="student-list">
+                    <thead>
+                        <tr>
+                            <th>Öğrenci ID</th>
+                            <th>İsim Soyisim</th>
+                            <th>TC No</th>
+                            <th>Doğum Tarihi</th>
+                            <th>Adres</th>
+                            <th>Okul</th>
+                            <th>Şube</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+                        <!-- Öğrenci bilgileri burada JavaScript ile dinamik olarak eklenecek -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Başvuru Bilgileri -->
+            <div id="applications" class="hidden">
+                <h1>Başvuru Onayla</h1>
+                <div class="form-container">
+                    <table class="student-table">
+                        <thead>
+                            <tr>
+                                <th>Öğrenci ID</th>
+                                <th>İsim Soyisim</th>
+                                <th>TC No</th>
+                                <th>Doğum Tarihi</th>
+                                <th>Adres</th>
+                                <th>Okul</th>
+                                <th>Şube</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" id="application-id" disabled></td>
+                                <td><input type="text" id="application-name" disabled></td>
+                                <td><input type="text" id="application-tc" disabled></td>
+                                <td>
+                                    <select id="application-birth-date-day" disabled>
+                                        <option value="">Gün</option>
+                                        <!-- Gün seçenekleri JavaScript ile eklenecek -->
+                                    </select>
+                                    <select id="application-birth-date-month" disabled>
+                                        <option value="">Ay</option>
+                                        <!-- Ay seçenekleri JavaScript ile eklenecek -->
+                                    </select>
+                                    <select id="application-birth-date-year" disabled>
+                                        <option value="">Yıl</option>
+                                        <!-- Yıl seçenekleri JavaScript ile eklenecek -->
+                                    </select>
+                                </td>
+                                <td><input type="text" id="application-address" disabled></td>
+                                <td>
+                                    <select id="application-school">
+                                        <option value="Okul 1">Okul 1</option>
+                                        <option value="Okul 2">Okul 2</option>
+                                        <option value="Okul 3">Okul 3</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="application-branch">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" onclick="confirmApplication()">Başvuruyu Onayla</button>
+                </div>
+                <!-- Başvuru Listesi -->
+                <h2>Başvuru Yapan Öğrenciler</h2>
+                <table class="student-list">
+                    <thead>
+                        <tr>
+                            <th>Öğrenci ID</th>
+                            <th>İsim Soyisim</th>
+                            <th>TC No</th>
+                            <th>Doğum Tarihi</th>
+                            <th>Adres</th>
+                            <th>Okul</th>
+                            <th>Şube</th>
+                            <th>Puan</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="application-table-body">
+                        <!-- Başvuru yapan öğrenciler burada JavaScript ile dinamik olarak eklenecek -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Kreş Bilgileri -->
+            <div id="nurseries" class="hidden">
+                <h1>Tüm Kreşler</h1>
+                <div class="form-container">
+                    <table class="nursery-table">
+                        <thead>
+                            <tr>
+                                <th>Kreş ID</th>
+                                <th>İsim</th>
+                                <th>Şube Sayısı</th>
+                                <th>Kapasite</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" id="nursery-id" placeholder="Kreş ID..."></td>
+                                <td><input type="text" id="nursery-name" placeholder="Kreş İsmi..."></td>
+                                <td><input type="number" id="nursery-branch-count" placeholder="Şube Sayısı..."></td>
+                                <td><input type="number" id="nursery-capacity" placeholder="Kapasite..."></td>
+                                <td><button id="add-nursery" onclick="addNursery()">Kreş Ekle</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Mevcut Kreş Listesi -->
+                <h2>Mevcut Kreşler</h2>
+                <table class="nursery-list">
+                    <thead>
+                        <tr>
+                            <th>Kreş ID</th>
+                            <th>İsim</th>
+                            <th>Şube Sayısı</th>
+                            <th>Kapasite</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nursery-table-body">
+                        <!-- Kreş bilgileri burada JavaScript ile dinamik olarak eklenecek -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Şube Bilgileri -->
+            <div id="branches" class="hidden">
+                <h1>Tüm Şubeler</h1>
+                <div class="form-container">
+                    <table class="branch-table">
+                        <thead>
+                            <tr>
+                                <th>Şube ID</th>
+                                <th>İsim</th>
+                                <th>Kreş</th>
+                                <th>Kapasite</th>
+                                <th>Öğretmenler</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" id="branch-id" placeholder="Şube ID..."></td>
+                                <td><input type="text" id="branch-name" placeholder="Şube İsmi..."></td>
+                                <td>
+                                    <select id="branch-nursery">
+                                        <option value="Kreş 1">Kreş 1</option>
+                                        <option value="Kreş 2">Kreş 2</option>
+                                        <option value="Kreş 3">Kreş 3</option>
+                                    </select>
+                                </td>
+                                <td><input type="number" id="branch-capacity" placeholder="Kapasite..."></td>
+                                <td>
+                                    <select id="branch-teachers">
+                                        <option value="Öğretmen 1">Öğretmen 1</option>
+                                        <option value="Öğretmen 2">Öğretmen 2</option>
+                                        <option value="Öğretmen 3">Öğretmen 3</option>
+                                    </select>
+                                </td>
+                                <td><button id="add-branch" onclick="addBranch()">Şube Ekle</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Mevcut Şube Listesi -->
+                <h2>Mevcut Şubeler</h2>
+                <table class="branch-list">
+                    <thead>
+                        <tr>
+                            <th>Şube ID</th>
+                            <th>İsim</th>
+                            <th>Kreş</th>
+                            <th>Kapasite</th>
+                            <th>Öğretmenler</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="branch-table-body">
+                        <!-- Şube bilgileri burada JavaScript ile dinamik olarak eklenecek -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="adminn.js"></script>
+</body>
+</html>
